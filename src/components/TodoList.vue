@@ -16,6 +16,7 @@ const todos = useTodosStore();
       :todo="todo"
 
       @is-done-change="todo.isDone = $event"
+      @title-change="todo.title = $event"
       @remove-request="todos.removeTodo(todo.id)"
     />
   </q-list>
