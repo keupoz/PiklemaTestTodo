@@ -42,7 +42,6 @@ jobs:
       - name: 🛠️ Build
         run: |
           pnpm build \
-            --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
 
       - name: ⚡ Upload artifact
