@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useTodosStore } from '~/store/todos';
+import { trim } from '~/utils/trim';
 
 const todos = useTodosStore();
 const newTodo = ref('');
@@ -10,7 +11,7 @@ function handleNewTodo() {
     return;
   }
 
-  todos.addTodo(newTodo.value);
+  todos.addTodo(trim(newTodo.value));
   newTodo.value = '';
 }
 </script>

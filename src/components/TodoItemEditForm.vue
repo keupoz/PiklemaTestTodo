@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { trim } from '~/utils/trim';
 
 export interface Props {
   initialTitle: string;
@@ -19,7 +20,7 @@ function handleNewTitle() {
     return;
   }
 
-  emit('submit', newTitle.value);
+  emit('submit', trim(newTitle.value));
 }
 </script>
 
