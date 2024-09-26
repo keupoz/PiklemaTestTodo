@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTodosStore } from '~/store/todos';
+import TodoItem from './TodoItem.vue';
 
 const todos = useTodosStore();
 </script>
@@ -9,26 +10,13 @@ const todos = useTodosStore();
     Используйте поле выше, чтобы добавить задачу
   </h6>
   <q-list v-else>
-    <template v-for="todo in todos.items" :key="todo.id">
-      <q-item v-ripple tag="label">
-        <q-item-section avatar>
-          <q-checkbox v-model="todo.isDone" />
-        </q-item-section>
+    <TodoItem
+      v-for="todo in todos.items"
+      :key="todo.id"
+      :todo="todo"
 
-        <q-item-section>
-          <q-item-label class="non-selectable" :class="{ 'text-strike': todo.isDone }">
-            {{ todo.title }}
-          </q-item-label>
-        </q-item-section>
-
-        <q-item-section side>
-          <q-toolbar class="row">
-            <q-btn round color="negative" flat icon="delete" @click="todos.removeTodo(todo.id)" />
-          </q-toolbar>
-        </q-item-section>
-      </q-item>
-
-      <q-separator />
-    </template>
+      @is-done-change="todo.isDone = $event"
+      @remove-request="todos.removeTodo(todo.id)"
+    />
   </q-list>
 </template>
